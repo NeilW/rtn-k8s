@@ -4,12 +4,15 @@ metadata:
   name: rtn-k8s-service
   labels:
     app: rtn-k8s
+  annotations:
+    service.beta.kubernetes.io/brightbox-load-balancer-listener-protocol: "http+ws"
+    service.beta.kubernetes.io/brightbox-load-balancer-listener-idle-timeout: "6000"
 spec:
-  ports:
-  - port: 80
-    targetPort: 3000
-    protocol: TCP
-  type: LoadBalancer
-  sessionAffinity: ClientIP
   selector:
     app: rtn-k8s
+  type: LoadBalancer
+  sessionAffinity: ClientIP
+  ports:
+  - port: 80
+    targetPort: rtn-k8s
+    protocol: TCP
