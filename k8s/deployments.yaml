@@ -14,8 +14,12 @@ spec:
       labels:
         app: rtn-k8s
     spec:
+      imagePullSecrets:
+      - name: brightbox-cr
       containers:
       - name: rtn-k8s
-        image: gcr.io/rtn-k8s/rtn-k8s:1.0
+        image: cr.brightbox.com/acc-tqs4c/docker/rtn-k8s:latest
+        imagePullPolicy: Always
         ports:
-        - containerPort: 3000
+        - name: rtn-k8s
+          containerPort: 3000
